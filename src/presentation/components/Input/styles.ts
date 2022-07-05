@@ -1,5 +1,35 @@
 import styled from 'styled-components';
 
-export const InputContainer = styled.div`
+type InputContainerProps = {
+  error: any;
+};
+export const InputContainer = styled.div<InputContainerProps>`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  > label {
+    display: block;
+    font-weight: var(--font-semi-bold);
+    color: var(--text-color);
+  }
+  > input {
+    width: 100%;
+    max-width: 25rem;
+    padding: .7rem .4rem;
+    border: 2px solid ${({ error }) => (error ? 'var(--red-color)' : 'var(--gray-color)')};
+    border-radius: .4rem;
+    &:hover {
+      border-color: var(--green-color);
+    }
+    
+  }
 
+  > span {
+    color: var(--red-color);
+    display: block;
+    font-size: var(--smaller-font-size);
+  }
+   
+;
 `;
