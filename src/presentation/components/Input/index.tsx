@@ -4,7 +4,7 @@ import { InputContainer, InputContent } from './styles';
 
 interface InputProps {
   name: string;
-  label: string;
+  label?: string;
   error?: string;
   type?: string;
   placeholder?: string;
@@ -16,11 +16,13 @@ interface InputProps {
 
 export function Input({ name, label, error, type, placeholder, disable, value, SetValue }: InputProps) {
   function handlerChange(value: any) {
-    SetValue(value);
+    console.log(value);
+    SetValue(value.target.value);
   }
   return (
     <InputContainer error={error}>
-      <label htmlFor={name}>{label}</label>
+      {label && <label htmlFor={name}>{label}</label>}
+
       <input
         disabled={disable}
         id={name}
@@ -44,12 +46,12 @@ export function InputForm({
   value,
   SetValue,
 }: InputProps) {
-  function handlerChange(value: any) {
-    SetValue(value);
+  function handlerChange(value: React.ChangeEvent<HTMLInputElement>) {
+    SetValue(value.target.value);
   }
   return (
     <InputContainer error={error}>
-      <label htmlFor={name}>{label}</label>
+      {label && <label htmlFor={name}>{label}</label>}
       <InputContent error={error} disabled={disable}>
         {children}
         <input
@@ -58,7 +60,7 @@ export function InputForm({
           type={type ? type : 'text'}
           placeholder={placeholder}
           value={value}
-          onChange={handlerChange}
+          onChange={(value) => handlerChange(value)}
         />
       </InputContent>
       {error && <span>{error}</span>}
