@@ -20,6 +20,8 @@ export const InputContainer = styled.div<InputContainerProps>`
     padding: .7rem .4rem;
     border: 2px solid ${({ error }) => (error ? 'var(--red-color)' : 'var(--gray-color)')};
     border-radius: .4rem;
+    transition: .4s;
+
     &:hover {
       border-color: var(--green-color);
     }
@@ -33,4 +35,27 @@ export const InputContainer = styled.div<InputContainerProps>`
   }
    
 ;
+`;
+export const InputContent = styled.div<InputContainerProps>`
+  width: 100%;
+  border: 2px solid ${({ error }) => (error ? 'var(--red-color)' : 'var(--gray-color)')};
+  border-radius: .4rem;
+  min-width: 20rem;
+  display: flex;
+  align-items: center;
+  transition: .4s;
+  &:hover {
+      border-color: var(--green-color);
+      > i {
+        color: var(--green-color);
+      }
+    }
+  > i {
+    padding: .7rem 0px .7rem .7rem;
+    font-size: 1.2rem;
+  }
+  > input {
+    width: 100%;
+    padding: .7rem ;
+  }
 `;
