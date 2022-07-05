@@ -4,6 +4,7 @@ import React, { FunctionComponent } from 'react';
 import { FormContainer, Form, FormContent } from '@/shared/styles/Form';
 import { Button } from '@/presentation/components/Button';
 import { Link } from 'react-router-dom';
+import logo from '@/shared/assets/images/logo.svg';
 
 export const Login: FunctionComponent = () => {
   const [email, SetEmail] = React.useState('');
@@ -12,8 +13,9 @@ export const Login: FunctionComponent = () => {
   return (
     <FormContainer>
       <Form>
-        <h2>Login MyUnsplash</h2>
-
+        <div>
+          <img src={logo} alt="logo" />
+        </div>
         <FormContent>
           <InputForm
             value={email}
