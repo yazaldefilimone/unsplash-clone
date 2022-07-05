@@ -3,7 +3,7 @@ import styled from 'styled-components';
 type ButtonContainerProps = { isDisable?: boolean };
 export const ButtonContainer = styled.button<ButtonContainerProps>`
   background-color: var(--green-color);
-  padding: .8rem .5rem;
+  padding: .8rem 1rem;
   max-width: 10rem;
   border-radius: .5rem;
   color: #fff;
