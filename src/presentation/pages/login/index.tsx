@@ -6,17 +6,33 @@ import { Button } from '@/presentation/components/Button';
 import { Link } from 'react-router-dom';
 
 export const Login: FunctionComponent = () => {
+  const [email, SetEmail] = React.useState('');
+  const [password, SetPassword] = React.useState('');
+
   return (
     <FormContainer>
       <Form>
         <h2>Login MyUnsplash</h2>
 
         <FormContent>
-          <InputForm name="email" label="Email" placeholder="Enter your Email">
+          <InputForm
+            value={email}
+            SetValue={SetEmail}
+            name="email"
+            label="Email"
+            placeholder="Enter your Email"
+          >
             <i className="ri-mail-line"></i>
           </InputForm>
 
-          <InputForm type="password" name="password" label="Password" placeholder="Enter your password">
+          <InputForm
+            value={password}
+            SetValue={SetPassword}
+            type="password"
+            name="password"
+            label="Password"
+            placeholder="Enter your password"
+          >
             <i className="ri-lock-password-line"></i>
           </InputForm>
           <Button text="Login">

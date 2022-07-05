@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 type InputContainerProps = {
   error: any;
+  disabled?: boolean;
 };
 export const InputContainer = styled.div<InputContainerProps>`
   width: 100%;
@@ -41,6 +42,8 @@ export const InputContent = styled.div<InputContainerProps>`
   border: 2px solid ${({ error }) => (error ? 'var(--red-color)' : 'var(--gray-color)')};
   border-radius: .4rem;
   min-width: 20rem;
+  background-color: ${({ disabled }) => (disabled ? 'var(--gray-color-alt)' : '')};
+  border-color: ${({ disabled }) => (disabled ? 'var(--gray-color)' : '')};
   display: flex;
   align-items: center;
   transition: .4s;

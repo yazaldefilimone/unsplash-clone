@@ -8,6 +8,7 @@ export default createGlobalStyle`
     --green-color: hsla(144, 49%, 47%, 1);
     --red-color:hsla(0, 79%, 63%, 1);
     --gray-color: hsla(0, 0%, 74%, 1);
+    --gray-color-alt: hsla(0, 0%, 89%, 1);
     --body-font:"Noto Sans", sans-serif;
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
