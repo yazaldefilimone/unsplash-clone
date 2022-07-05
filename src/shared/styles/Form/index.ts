@@ -22,10 +22,13 @@ export const Form = styled.div`
   /* display: flex;
   flex-direction:column;
   gap:.8rem; */
-  > h2 {
-    font-size: var(--h2-font-size);
-    margin-bottom: 1rem;
-    color: var(--title-color);
+  > div {
+    > img {
+      margin-left: .2rem;
+      width: 15rem;
+      margin-bottom: .8rem;
+    }
+    
   }
   > p {
     margin-top: 1rem;
