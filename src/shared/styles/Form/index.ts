@@ -26,9 +26,13 @@ export const Form = styled.div`
     > img {
       margin-left: .2rem;
       width: 15rem;
-      margin-bottom: .8rem;
+      margin-bottom: .9rem;
     }
-    
+  }
+  > h2 {
+    font-size: var(--h2-font-size);
+    color: var(--title-color);
+    margin-bottom: 1rem;
   }
   > p {
     margin-top: 1rem;
