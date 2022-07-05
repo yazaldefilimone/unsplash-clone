@@ -10,12 +10,13 @@ export const InputContainer = styled.div<InputContainerProps>`
   align-items: flex-start;
   > label {
     display: block;
+    margin-bottom: .3rem;
     font-weight: var(--font-semi-bold);
     color: var(--text-color);
   }
   > input {
     width: 100%;
-    max-width: 25rem;
+    min-width: 20rem;
     padding: .7rem .4rem;
     border: 2px solid ${({ error }) => (error ? 'var(--red-color)' : 'var(--gray-color)')};
     border-radius: .4rem;
