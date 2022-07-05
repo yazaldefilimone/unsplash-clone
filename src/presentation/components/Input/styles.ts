@@ -53,6 +53,7 @@ export const InputContent = styled.div<InputContainerProps>`
   > i {
     padding: .7rem 0px .7rem .7rem;
     font-size: 1.2rem;
+    color: var(--text-color);
   }
   > input {
     width: 100%;
