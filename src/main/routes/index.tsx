@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import GlobalStyles from '@/shared/styles/global';
+
 import { Home } from '@/presentation/pages/home';
 import { User } from '@/presentation/pages/user';
 import { Login } from '@/presentation/pages/login';
 import { SignUp } from '@/presentation/pages/signup';
-import GlobalStyles from '@/shared/styles/global';
 
 export const Routers: FunctionComponent = () => {
   return (
