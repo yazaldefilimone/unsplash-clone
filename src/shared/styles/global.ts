@@ -12,9 +12,9 @@ export default createGlobalStyle`
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
     --h3-font-size: 1.125rem;
-    --normal-font-size: 0.938rem;
-    --small-font-size: 0.813rem;
-    --smaller-font-size: 0.75rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.938rem;
+    --smaller-font-size: 0.813rem;
 
     --font-medium: 500;
     --font-semi-bold: 600;
@@ -29,10 +29,13 @@ export default createGlobalStyle`
   }
   * {
     margin: 0px;
+    font-size: var(--normal-font-size);
+    font-family: var(--body-font);
     padding: 0px;
     box-sizing: border-box;
     border: none;
     background: none;
+    outline: none;
   }
 
   li {
