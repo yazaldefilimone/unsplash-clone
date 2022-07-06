@@ -12,29 +12,43 @@ export const Board: FunctionComponent = () => {
   const projects = {
     username: 'Yazalde Filimone',
     desc,
-    src: 'https://images.unsplash.com/photo-1504194104404-433180773017?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+    src: 'https://source.unsplash.com/random/',
   };
 
-  const list = [
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2],
-  ];
+  const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2];
   return (
     <div>
       <BoardContainer>
-        {list.map((l) => (
-          <div>
-            {l.map((obj) => (
-              <Image
-                SetActive={SetModalDelete}
-                src={projects.src}
-                description={projects.desc}
-                userName={projects.username}
-              />
-            ))}
-          </div>
-        ))}
+        <div>
+          {list.map((obj) => (
+            <Image
+              SetActive={SetModalDelete}
+              src={`https://source.unsplash.com/random/${obj * 2}`}
+              description={projects.desc}
+              userName={projects.username}
+            />
+          ))}
+        </div>
+        <div>
+          {list.map((obj) => (
+            <Image
+              SetActive={SetModalDelete}
+              src={`https://source.unsplash.com/random/${obj * 5}`}
+              description={projects.desc}
+              userName={projects.username}
+            />
+          ))}
+        </div>
+        <div>
+          {list.map((obj) => (
+            <Image
+              SetActive={SetModalDelete}
+              src={`https://source.unsplash.com/random/${obj * 11}`}
+              description={projects.desc}
+              userName={projects.username}
+            />
+          ))}
+        </div>
       </BoardContainer>
 
       <Modal active={modalDelete} SetActive={SetModalDelete}>
