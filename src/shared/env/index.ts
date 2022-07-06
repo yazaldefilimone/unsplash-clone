@@ -7,4 +7,7 @@ export const env = {
     messagingSenderId: process.env.FIREBASE_MessagingSenderId as string,
     appId: process.env.FIREBASE_AppId as string,
   },
+  secret: {
+    key: process.env.SECRET as string,
+  },
 };
