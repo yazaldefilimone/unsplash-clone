@@ -19,6 +19,7 @@ export const Form = styled.div`
   border: 2px solid var(--gray-color);
   padding: 2rem 1rem;
   border-radius: .4rem;
+  background: var(--body-color);
   /* display: flex;
   flex-direction:column;
   gap:.8rem; */
