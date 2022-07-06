@@ -9,5 +9,5 @@ export const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0,0,0,.2);
+  background-color: rgba(0,0,0,.3);
 `;
