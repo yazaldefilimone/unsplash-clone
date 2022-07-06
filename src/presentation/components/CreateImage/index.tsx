@@ -3,13 +3,20 @@ import React, { FunctionComponent } from 'react';
 import { Button } from '../Button';
 import { Input, InputForm } from '../Input';
 
-//import { CreateImageContainer } from './styles';
+import { CreateImageHeader } from './styles';
 
 export const CreateImage: FunctionComponent = () => {
   const [title, SetTitle] = React.useState('');
   const [url, SetUrl] = React.useState('');
   return (
     <Form>
+      <CreateImageHeader>
+        <h2>Create New Image</h2>
+
+        <button>
+          <i className="ri-close-line"></i>
+        </button>
+      </CreateImageHeader>
       <FormContent>
         <InputForm value={title} SetValue={SetTitle} name="title" label="Title">
           <i className="ri-price-tag-2-line"></i>
