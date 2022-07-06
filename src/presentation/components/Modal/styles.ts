@@ -5,7 +5,7 @@ type ModalContainerProps = {
 };
 export const ModalContainer = styled.div<ModalContainerProps>`
   position: fixed;
-  z-index: 999;
+  z-index: 9;
   top:0px;
   left: 0px;
   height: 100vh;
@@ -14,4 +14,7 @@ export const ModalContainer = styled.div<ModalContainerProps>`
   align-items: center;
   justify-content: center;
   background-color: rgba(0,0,0,.3);
+  > * {
+    z-index: 999;
+  }
 `;
