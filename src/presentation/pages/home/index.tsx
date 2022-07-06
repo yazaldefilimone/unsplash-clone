@@ -1,9 +1,14 @@
-import React, { FunctionComponent } from "react";
+import { Board } from '@/presentation/components/Board';
+import { Header } from '@/presentation/components/Header';
+import React, { FunctionComponent } from 'react';
 
 export const Home: FunctionComponent = () => {
   return (
-    <div>
-      <h2>Home</h2>
-    </div>
+    <article>
+      <Header />
+      <main>
+        <Board />
+      </main>
+    </article>
   );
 };
