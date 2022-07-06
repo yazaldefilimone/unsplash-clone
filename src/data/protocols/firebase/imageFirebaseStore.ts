@@ -1,7 +1,7 @@
-import { User } from '@/domain/entities';
+import { Image } from '@/domain/entities';
 
 export interface IImageFirebaseStore {
-  create: (data: User) => Promise<any>;
-  get: (email: string) => any;
-  delete: (id: string) => any;
+  create: (data: Image) => Promise<{ id: string }>;
+  getById: (id: string) => Promise<Image>;
+  deleteById: (id: string) => Promise<{ id: string }>;
 }

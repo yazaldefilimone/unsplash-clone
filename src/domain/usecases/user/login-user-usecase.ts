@@ -1,10 +1,5 @@
 import { User } from '@/domain/entities';
-import {
-  EmailInUseError,
-  InvalidCredentialsError,
-  NotFoundError,
-  UnexpectedError,
-} from '@/domain/errors';
+import { EmailInUseError, InvalidParamError, NotFoundError, UnexpectedError } from '@/domain/errors';
 import { Either } from '@/shared/error-handler/either';
 
 export interface ILoginUserUseCase {
@@ -14,6 +9,6 @@ export interface ILoginUserUseCase {
 export namespace ILoginUserUseCase {
   export type Input = Omit<User, 'id'>;
   export type Output = Promise<
-    Either<UnexpectedError | NotFoundError | InvalidCredentialsError, { token: string }>
+    Either<UnexpectedError | NotFoundError | InvalidParamError, { token: string }>
   >;
 }

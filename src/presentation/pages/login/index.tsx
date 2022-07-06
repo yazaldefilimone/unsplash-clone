@@ -5,11 +5,18 @@ import { FormContainer, Form, FormContent } from '@/shared/styles/Form';
 import { Button } from '@/presentation/components/Button';
 import { Link } from 'react-router-dom';
 import logo from '@/shared/assets/images/logo.svg';
+import { ILoginUserUseCase } from '@/domain/usecases/user';
 
-export const Login: FunctionComponent = () => {
+type LoginProps = {
+  // loginUserUseCase: ILoginUserUseCase;
+};
+export const Login: FunctionComponent<LoginProps> = () => {
   const [email, SetEmail] = React.useState('');
   const [password, SetPassword] = React.useState('');
-
+  async function handlerSubmit() {
+    // const result = await loginUserUseCase.perform({ name: 'eu', email, password });
+    // console.log(result);
+  }
   return (
     <FormContainer>
       <Form>
@@ -37,7 +44,7 @@ export const Login: FunctionComponent = () => {
           >
             <i className="ri-lock-password-line"></i>
           </InputForm>
-          <Button text="Login">
+          <Button text="Login" SetActive={handlerSubmit}>
             <i className="ri-login-circle-line"></i>
           </Button>
         </FormContent>
