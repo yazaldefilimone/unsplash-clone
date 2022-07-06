@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export const Header: FunctionComponent<HeaderProps> = () => {
   const [search, SetSearch] = React.useState('');
-  const [modalAdd, SetModalAdd] = React.useState(false);
+  const [modalAdd, SetModalAdd] = React.useState(true);
 
   return (
     <HeaderContainer>
