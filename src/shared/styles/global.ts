@@ -54,4 +54,7 @@ export default createGlobalStyle`
     max-width: 100%;
     height: auto;
   }
+  main {
+    margin: 2rem 0px;
+  }
 `;
