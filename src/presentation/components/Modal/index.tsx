@@ -10,7 +10,7 @@ type ModalProps = {
 
 export const Modal: FunctionComponent<ModalProps> = ({ children, SetActive, active }) => {
   function handlerClose() {
-    SetActive(!active);
+    // SetActive(!active);
   }
 
   return (
