@@ -5,12 +5,17 @@ import { ModalContainer } from './styles';
 type ModalProps = {
   children: ReactNode;
   SetActive: Function;
+  active: boolean;
 };
 
-export const Modal: FunctionComponent<ModalProps> = ({ children, SetActive }) => {
+export const Modal: FunctionComponent<ModalProps> = ({ children, SetActive, active }) => {
   function handlerClose() {
-    SetActive((active: boolean) => !active);
+    SetActive(!active);
   }
 
-  return <ModalContainer onClick={() => handlerClose()}>{children}</ModalContainer>;
+  return (
+    <ModalContainer active={active} onClick={() => handlerClose()}>
+      {children}
+    </ModalContainer>
+  );
 };

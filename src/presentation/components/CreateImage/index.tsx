@@ -1,19 +1,26 @@
 import { Form, FormContent } from '@/shared/styles/Form';
 import React, { FunctionComponent } from 'react';
-import { Button } from '../Button';
-import { Input, InputForm } from '../Input';
+import { Button } from '@/presentation/components/Button';
+import { InputForm } from '@/presentation/components/Input';
 
 import { CreateImageHeader } from './styles';
+type CreateImageProps = {
+  SetActive: Function;
+};
 
-export const CreateImage: FunctionComponent = () => {
+export const CreateImage: FunctionComponent<CreateImageProps> = ({ SetActive }) => {
   const [title, SetTitle] = React.useState('');
   const [url, SetUrl] = React.useState('');
+
+  function handlerClose() {
+    SetActive((active: boolean) => !active);
+  }
   return (
     <Form>
       <CreateImageHeader>
         <h2>Create New Image</h2>
 
-        <button>
+        <button onClick={() => handlerClose()}>
           <i className="ri-close-line"></i>
         </button>
       </CreateImageHeader>

@@ -7,11 +7,17 @@ interface ButtonProps {
   text: string;
   isDisable?: boolean;
   isRed?: boolean;
+  SetActive?: Function;
 }
 
-export function Button({ children, text, isDisable, isRed }: ButtonProps) {
+export function Button({ children, text, isDisable, isRed, SetActive }: ButtonProps) {
+  function handlerClick() {
+    if (SetActive) {
+      SetActive((active: boolean) => !active);
+    }
+  }
   return (
-    <ButtonContainer isRed={isRed} isDisable={isDisable}>
+    <ButtonContainer isRed={isRed} isDisable={isDisable} onClick={() => handlerClick()}>
       {children}
       {text}
       <Spinner></Spinner>

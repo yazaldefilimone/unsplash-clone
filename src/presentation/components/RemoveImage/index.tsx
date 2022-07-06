@@ -1,18 +1,25 @@
 import { Form, FormContent } from '@/shared/styles/Form';
 import React, { FunctionComponent } from 'react';
-import { Button } from '../Button';
-import { Input, InputForm } from '../Input';
+import { Button } from '@/presentation/components/Button';
+import { InputForm } from '@/presentation/components/Input';
 
 import { RemoveImageHeader } from './styles';
 
-export const RemoveImage: FunctionComponent = () => {
+type RemoveImageProps = {
+  SetActive: Function;
+};
+
+export const RemoveImage: FunctionComponent<RemoveImageProps> = ({ SetActive }) => {
   const [password, SetPassword] = React.useState('');
+  function handlerClose() {
+    SetActive((active: boolean) => !active);
+  }
   return (
     <Form>
       <RemoveImageHeader>
         <h2>Delete Image</h2>
 
-        <button>
+        <button onClick={() => handlerClose()}>
           <i className="ri-close-line"></i>
         </button>
       </RemoveImageHeader>
