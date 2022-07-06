@@ -14,7 +14,7 @@ export const Modal: FunctionComponent<ModalProps> = ({ children, SetActive, acti
   }
 
   return (
-    <ModalContainer active={active} onClick={() => handlerClose()}>
+    <ModalContainer active={active} onClick={handlerClose}>
       {children}
     </ModalContainer>
   );
