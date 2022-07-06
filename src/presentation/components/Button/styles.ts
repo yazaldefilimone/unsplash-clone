@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-type ButtonContainerProps = { isDisable?: boolean };
+type ButtonContainerProps = { isDisable?: boolean; isRed?: boolean };
 export const ButtonContainer = styled.button<ButtonContainerProps>`
-  background-color: var(--green-color);
+  background-color:  ${({ isRed }) => (isRed ? 'var(--red-color)' : 'var(--green-color)')};
   padding: .8rem 1rem;
   max-width: 10rem;
   border-radius: .5rem;
