@@ -7,16 +7,20 @@ type ImageProps = {
   src: string;
   description: string;
   userName: string;
+  SetActive: Function;
   className?: string;
 };
 
-export const Image: FunctionComponent<ImageProps> = ({ src, userName, className }) => {
+export const Image: FunctionComponent<ImageProps> = ({ src, userName, className, SetActive }) => {
+  function handlerDelete() {
+    SetActive((active: boolean) => !active);
+  }
   return (
     <ImageContainer className={className}>
       <img src={src} alt="unsplash-clone image" />
       <ImageStyle>
         <div>
-          <button>Delete</button>
+          <button onClick={handlerDelete}>Delete</button>
           <span>{userName}</span>
         </div>
       </ImageStyle>
