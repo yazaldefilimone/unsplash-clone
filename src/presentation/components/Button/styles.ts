@@ -18,6 +18,9 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   &:hover {
     opacity: .8;
   }
+  &:disabled{
+    opacity: .6;
+  }
 `;
 type SpinnerProps = { active?: boolean };
 

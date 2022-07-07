@@ -17,7 +17,7 @@ export function Button({ children, text, isDisable, isRed, SetActive }: ButtonPr
     }
   }
   return (
-    <ButtonContainer isRed={isRed} isDisable={isDisable} onClick={() => handlerClick()}>
+    <ButtonContainer isRed={isRed} disabled={isDisable} onClick={() => handlerClick()}>
       {children}
       {text}
       <Spinner></Spinner>
