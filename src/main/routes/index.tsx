@@ -5,9 +5,7 @@ import GlobalStyles from '@/shared/styles/global';
 
 import { Home } from '@/presentation/pages/home';
 import { User } from '@/presentation/pages/user';
-import { SignUp } from '@/presentation/pages/signup';
-import { LoginFactory } from '../factories/user/LoginFactory';
-import { Login } from '@/presentation/pages/login';
+import { SignUpFactory, LoginFactory } from '../factories/user';
 
 export const Routers: FunctionComponent = () => {
   return (
@@ -15,8 +13,8 @@ export const Routers: FunctionComponent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user" element={<User />} />
-        <Route path="/user/login" element={<Login />} />
-        <Route path="/user/signup" element={<SignUp />} />
+        <Route path="/user/login" element={<LoginFactory />} />
+        <Route path="/user/signup" element={<SignUpFactory />} />
       </Routes>
       <GlobalStyles />
     </BrowserRouter>
