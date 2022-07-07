@@ -5,11 +5,20 @@ import { InputForm } from '@/presentation/components/Input';
 import { Button } from '@/presentation/components/Button';
 import { Link } from 'react-router-dom';
 import logo from '@/shared/assets/images/logo.svg';
+import { ISignupUserUseCase } from '@/domain/usecases/user';
 
-export const SignUp: FunctionComponent = () => {
+type SignUpProps = {
+  signupUserUseCase: ISignupUserUseCase;
+};
+export const SignUp: FunctionComponent<SignUpProps> = ({ signupUserUseCase }) => {
   const [name, SetName] = React.useState('');
   const [email, SetEmail] = React.useState('');
   const [password, SetPassword] = React.useState('');
+
+  async function handlerSubmit() {
+    const result = await signupUserUseCase.perform({ name, email, password });
+    console.log(result);
+  }
 
   return (
     <FormContainer>
@@ -50,7 +59,7 @@ export const SignUp: FunctionComponent = () => {
             <i className="ri-lock-password-line"></i>
           </InputForm>
 
-          <Button text="SigUp">
+          <Button text="SigUp" SetActive={handlerSubmit}>
             <i className="ri-user-add-line"></i>
           </Button>
         </FormContent>
