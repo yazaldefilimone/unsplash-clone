@@ -7,7 +7,7 @@ export interface ILoginUserUseCase {
 }
 
 export namespace ILoginUserUseCase {
-  export type Input = Omit<User, 'id'>;
+  export type Input = { email: string; password: string };
   export type Output = Promise<
     Either<UnexpectedError | NotFoundError | InvalidParamError, { token: string }>
   >;
