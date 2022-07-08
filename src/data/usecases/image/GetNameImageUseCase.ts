@@ -14,7 +14,7 @@ export class GetNameImageUseCase implements IGetNameImageUseCase {
     try {
       const request = {
         ...endpoints.image.findImageForUser,
-        body: data,
+        param: data.name,
       };
       const response = await this.httpClient.request(request);
 
