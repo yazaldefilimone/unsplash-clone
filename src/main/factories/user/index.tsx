@@ -11,14 +11,24 @@ const localStorageAdapter = new LocalStorageAdapter();
 
 export const LoginFactory: FunctionComponent = () => {
   const loginUserUseCase = new LoginUserUseCase(axiosHttpClient, localStorageAdapter);
-  return <Login loginUserUseCase={loginUserUseCase} />;
+  const authUserUseCase = new AuthUserUseCase(localStorageAdapter, axiosHttpClient);
+
+  return <Login loginUserUseCase={loginUserUseCase} authUserUseCase={authUserUseCase} />;
 };
 
 export const SignUpFactory: FunctionComponent = () => {
+  const authUserUseCase = new AuthUserUseCase(localStorageAdapter, axiosHttpClient);
+
   const signupUserUseCase = new SignupUserUseCase(axiosHttpClient);
   const loginUserUseCase = new LoginUserUseCase(axiosHttpClient, localStorageAdapter);
 
-  return <SignUp signupUserUseCase={signupUserUseCase} loginUserUseCase={loginUserUseCase} />;
+  return (
+    <SignUp
+      signupUserUseCase={signupUserUseCase}
+      authUserUseCase={authUserUseCase}
+      loginUserUseCase={loginUserUseCase}
+    />
+  );
 };
 
 export const authUserFactory = function () {
