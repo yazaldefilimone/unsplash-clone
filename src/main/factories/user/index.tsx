@@ -16,5 +16,7 @@ export const LoginFactory: FunctionComponent = () => {
 
 export const SignUpFactory: FunctionComponent = () => {
   const signupUserUseCase = new SignupUserUseCase(axiosHttpClient);
-  return <SignUp signupUserUseCase={signupUserUseCase} />;
+  const loginUserUseCase = new LoginUserUseCase(axiosHttpClient, localStorageAdapter);
+
+  return <SignUp signupUserUseCase={signupUserUseCase} loginUserUseCase={loginUserUseCase} />;
 };
