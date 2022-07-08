@@ -13,7 +13,7 @@ export class GetNameImageUseCase implements IGetNameImageUseCase {
   async perform(data: IGetNameImageUseCase.Input): IGetNameImageUseCase.Output {
     try {
       const request = {
-        ...endpoints.image.create,
+        ...endpoints.image.findImageForUser,
         body: data,
       };
       const response = await this.httpClient.request(request);

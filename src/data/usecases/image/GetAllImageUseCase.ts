@@ -13,7 +13,7 @@ export class GetAllImageUseCase implements IGetAllImageUseCase {
   async perform(): IGetAllImageUseCase.Output {
     try {
       const request = {
-        ...endpoints.image.create,
+        ...endpoints.image.all,
         body: null,
       };
       const response = await this.httpClient.request(request);
