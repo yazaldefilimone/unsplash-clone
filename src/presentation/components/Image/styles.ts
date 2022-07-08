@@ -12,7 +12,8 @@ export const ImageContainer = styled.div`
     height: -webkit-fill-available !important;
     width: -webkit-fill-available !important;
     object-fit: cover; */
-    height: inherit;
+    height: 100%;
+    width: 100%;
     object-fit: cover
 
   }

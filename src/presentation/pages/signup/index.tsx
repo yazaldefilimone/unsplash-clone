@@ -5,14 +5,20 @@ import { InputForm } from '@/presentation/components/Input';
 import { Button } from '@/presentation/components/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '@/shared/assets/images/logo.svg';
-import { ILoginUserUseCase, ISignupUserUseCase } from '@/domain/usecases/user';
+import { IAuthUserUseCase, ILoginUserUseCase, ISignupUserUseCase } from '@/domain/usecases/user';
 import { IToastProps, Toast } from '@/presentation/components/Toast';
+import { useAuth } from '@/presentation/hooks/useAuth';
 
 type SignUpProps = {
   signupUserUseCase: ISignupUserUseCase;
   loginUserUseCase: ILoginUserUseCase;
+  authUserUseCase: IAuthUserUseCase;
 };
-export const SignUp: FunctionComponent<SignUpProps> = ({ signupUserUseCase, loginUserUseCase }) => {
+export const SignUp: FunctionComponent<SignUpProps> = ({
+  signupUserUseCase,
+  loginUserUseCase,
+  authUserUseCase,
+}) => {
   const [name, SetName] = React.useState('');
   const [email, SetEmail] = React.useState('');
   const [password, SetPassword] = React.useState('');
@@ -20,6 +26,7 @@ export const SignUp: FunctionComponent<SignUpProps> = ({ signupUserUseCase, logi
   const [toast, SetToast] = React.useState(false);
   const [loading, SetLoading] = React.useState(false);
   const [errorOrSuccess, SetErrorOrSuccess] = React.useState<IToastProps>({} as IToastProps);
+  const { SetCurrentUser } = useAuth();
 
   async function handlerSubmit() {
     try {
@@ -37,10 +44,15 @@ export const SignUp: FunctionComponent<SignUpProps> = ({ signupUserUseCase, logi
         return 0;
       }
       const response = await loginUserUseCase.perform({ email, password });
-      SetLoading(false);
 
       if (response.isLeft()) {
         navigate('/user/login');
+      }
+      const auth = await authUserUseCase.perform();
+      SetLoading(false);
+
+      if (auth.isRight()) {
+        SetCurrentUser(auth.value);
       }
       SetErrorOrSuccess({
         message: 'create user successfully',

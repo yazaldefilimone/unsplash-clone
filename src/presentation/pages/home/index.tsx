@@ -1,14 +1,13 @@
-import { Board } from '@/presentation/components/Board';
-import { Header } from '@/presentation/components/Header';
+import { BoardFactory, HeaderFactory } from '@/main/factories/image';
 
 import React, { FunctionComponent } from 'react';
 
 export const Home: FunctionComponent = () => {
   return (
     <article>
-      <Header />
+      <HeaderFactory />
       <main>
-        <Board />
+        <BoardFactory />
       </main>
     </article>
   );

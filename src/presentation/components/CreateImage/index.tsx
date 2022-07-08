@@ -6,7 +6,7 @@ import { InputForm } from '@/presentation/components/Input';
 import { CreateImageHeader } from './styles';
 import { ICreateImageUseCase } from '@/domain/usecases/image';
 import { useNavigate } from 'react-router-dom';
-import { IToastProps } from '@/presentation/components/Toast';
+import { IToastProps, Toast } from '@/presentation/components/Toast';
 type CreateImageProps = {
   SetActive: Function;
   createImageUseCase: ICreateImageUseCase;
@@ -57,25 +57,33 @@ export const CreateImage: FunctionComponent<CreateImageProps> = ({ SetActive, cr
     }
   }
   return (
-    <Form>
-      <CreateImageHeader>
-        <h2>Create New Image</h2>
+    <>
+      <Form>
+        <CreateImageHeader>
+          <h2>Create New Image</h2>
 
-        <button onClick={() => handlerClose()}>
-          <i className="ri-close-line"></i>
-        </button>
-      </CreateImageHeader>
-      <FormContent>
-        <InputForm value={label} SetValue={SetLabel} name="label" label="Label">
-          <i className="ri-price-tag-2-line"></i>
-        </InputForm>
-        <InputForm value={url} SetValue={SetUrl} name="url" label="Url">
-          <i className="ri-link"></i>
-        </InputForm>
-        <Button text="Create" spinner={loading} SetActive={handlerSubmit}>
-          <i className="ri-image-add-line"></i>
-        </Button>
-      </FormContent>
-    </Form>
+          <button onClick={() => handlerClose()}>
+            <i className="ri-close-line"></i>
+          </button>
+        </CreateImageHeader>
+        <FormContent>
+          <InputForm value={label} SetValue={SetLabel} name="label" label="Label">
+            <i className="ri-price-tag-2-line"></i>
+          </InputForm>
+          <InputForm value={url} SetValue={SetUrl} name="url" label="Url">
+            <i className="ri-link"></i>
+          </InputForm>
+          <Button text="Create" spinner={loading} SetActive={handlerSubmit}>
+            <i className="ri-image-add-line"></i>
+          </Button>
+        </FormContent>
+      </Form>
+      <Toast
+        value={toast}
+        SetValue={SetToast}
+        status={errorOrSuccess.status}
+        message={errorOrSuccess.message}
+      />
+    </>
   );
 };

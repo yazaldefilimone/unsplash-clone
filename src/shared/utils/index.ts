@@ -1,7 +1,11 @@
+import { LocalStorageAdapter } from '@/infrastructure/cache';
 import { env } from '@/shared/env';
 
 const url = env.unsplash.api;
-
+const cache = new LocalStorageAdapter().get(env.storage.token);
+const auth = {
+  Authorization: `Bearer ${cache.token}`,
+};
 const userUrl = `${url}/user`;
 const imageUrl = `${url}/image`;
 
@@ -26,6 +30,7 @@ export const endpoints = {
     create: {
       method: 'post',
       url: `${imageUrl}/create/`,
+      headers: auth,
     },
     all: {
       method: 'get',
@@ -38,6 +43,7 @@ export const endpoints = {
     delete: {
       method: 'delete',
       url: `${imageUrl}/delete/`,
+      headers: auth,
     },
   },
 };

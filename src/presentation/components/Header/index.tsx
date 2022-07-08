@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent } from 'react';
 
 import { HeaderContainer, HeaderNav, HeaderLogo, HeaderContent } from './styles';
 import logo from '@/shared/assets/images/logo.svg';
@@ -8,11 +8,13 @@ import { Modal } from '@/presentation/components/Modal';
 import { CreateImage } from '@/presentation/components/CreateImage';
 import { useAuth } from '@/presentation/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { ICreateImageUseCase, IGetNameImageUseCase } from '@/domain/usecases/image';
 interface HeaderProps {
-  children?: ReactNode;
+  createImageUseCase: ICreateImageUseCase;
+  getNameImageUseCase: IGetNameImageUseCase;
 }
 
-export const Header: FunctionComponent<HeaderProps> = () => {
+export const Header: FunctionComponent<HeaderProps> = ({ createImageUseCase, getNameImageUseCase }) => {
   const [search, SetSearch] = React.useState('');
   const [modalAdd, SetModalAdd] = React.useState(true);
   const { currentUser } = useAuth();
@@ -25,6 +27,12 @@ export const Header: FunctionComponent<HeaderProps> = () => {
       }
     }
   }, [modalAdd]);
+
+  React.useEffect(() => {
+    if (search.length > 2) {
+    }
+  }, [search]);
+
   return (
     <HeaderContainer>
       <HeaderNav>
@@ -47,7 +55,7 @@ export const Header: FunctionComponent<HeaderProps> = () => {
         </Button> */}
       </HeaderNav>
       <Modal active={modalAdd} SetActive={SetModalAdd}>
-        <CreateImage SetActive={SetModalAdd} />
+        <CreateImage createImageUseCase={createImageUseCase} SetActive={SetModalAdd} />
       </Modal>
     </HeaderContainer>
   );
