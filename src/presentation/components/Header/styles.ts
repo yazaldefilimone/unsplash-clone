@@ -16,6 +16,11 @@ export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  > *:last-child{
+    @media screen and (max-width: 790px) {
+      display: none;
+  }
+  }
 `;
 
 export const HeaderLogo = styled.div`

@@ -6,6 +6,15 @@ export const BoardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
+
+  @media screen and (max-width: 990px) {
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 790px) {
+    gap: .5rem;
+  }
   /* grid-template-rows: repeat(6, 300px); */
   > div {
     display: grid;
@@ -13,16 +22,28 @@ export const BoardContainer = styled.section`
     &:first-child{
       > *:nth-child(2n){
       height: 580px;
+      @media screen and (max-width: 790px) {
+        height: 300px;
+
+  }
       }
     }
     &:nth-child(2){
       > *:nth-child(2n+3){
       height: 580px;
+      @media screen and (max-width: 790px) {
+        height: 300px;
+
+  }
     }
     }
     &:nth-child(3){
       > *:nth-child(2n+1){
       height: 580px;
+      @media screen and (max-width: 790px) {
+        height: 300px;
+
+  }
     }
     }
   }

@@ -7,6 +7,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   max-width: 10rem;
   border-radius: .5rem;
   color: #fff;
+  width: 100%;
   font-size: 16px;
   font-weight: 700;
   line-height: 22px;
