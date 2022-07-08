@@ -5,22 +5,22 @@ import { ButtonContainer, Spinner } from './styles';
 interface ButtonProps {
   children?: ReactNode;
   text: string;
-  isDisable?: boolean;
   isRed?: boolean;
   SetActive?: Function;
+  spinner?: boolean;
 }
 
-export function Button({ children, text, isDisable, isRed, SetActive }: ButtonProps) {
+export function Button({ children, text, isRed, SetActive, spinner }: ButtonProps) {
   function handlerClick() {
     if (SetActive) {
       SetActive((active: boolean) => !active);
     }
   }
   return (
-    <ButtonContainer isRed={isRed} disabled={isDisable} onClick={() => handlerClick()}>
+    <ButtonContainer isRed={isRed} disabled={spinner} onClick={() => handlerClick()}>
       {children}
       {text}
-      <Spinner></Spinner>
+      <Spinner active={spinner}></Spinner>
     </ButtonContainer>
   );
 }
