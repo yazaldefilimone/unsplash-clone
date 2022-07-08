@@ -7,6 +7,7 @@ import { Home } from '@/presentation/pages/home';
 import { User } from '@/presentation/pages/user';
 import { SignUpFactory, LoginFactory, authUserFactory } from '@/main/factories/user';
 import { AuthContextProvider } from '@/presentation/hooks/useAuth';
+import { Footer } from '@/presentation/components/Footer';
 
 export const Routers: FunctionComponent = () => {
   const auth = authUserFactory();
@@ -20,6 +21,7 @@ export const Routers: FunctionComponent = () => {
           <Route path="/user/signup" element={<SignUpFactory />} />
         </Routes>
         <GlobalStyles />
+        <Footer />
       </BrowserRouter>
     </AuthContextProvider>
   );
