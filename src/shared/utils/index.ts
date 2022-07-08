@@ -4,7 +4,7 @@ import { env } from '@/shared/env';
 const url = env.unsplash.api;
 const cache = new LocalStorageAdapter().get(env.storage.token);
 const auth = {
-  Authorization: `Bearer ${cache.token}`,
+  Authorization: `Bearer ${cache?.token}`,
 };
 const userUrl = `${url}/user`;
 const imageUrl = `${url}/image`;
