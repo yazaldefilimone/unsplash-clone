@@ -29,7 +29,7 @@ export const CreateImage: FunctionComponent<CreateImageProps> = ({ SetActive }) 
           <i className="ri-price-tag-2-line"></i>
         </InputForm>
         <InputForm value={url} SetValue={SetUrl} name="url" label="Url">
-          <i className="ri-price-tag-2-line"></i>
+          <i className="ri-link"></i>
         </InputForm>
         <Button text="Create">
           <i className="ri-image-add-line"></i>
