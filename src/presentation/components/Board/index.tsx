@@ -17,14 +17,18 @@ type BoardTypes = {
 
 export const Board: FunctionComponent<BoardTypes> = ({ deleteImageUseCase, getAllImageUseCase }) => {
   const [modalDelete, SetModalDelete] = React.useState(true);
-  const [images, SetImages] = React.useState<Images[]>();
+  const [id, SetId] = React.useState('');
+  const [images, SetImages] = React.useState<any[]>();
   const [toast, SetToast] = React.useState(false);
   const [loading, SetLoading] = React.useState(false);
   const [errorOrSuccess, SetErrorOrSuccess] = React.useState<IToastProps>({} as IToastProps);
 
   const { currentUser } = useAuth();
   const navegante = useNavigate();
-
+  function deleteImage(id?: string, act?: boolean) {
+    SetId(id as any);
+    SetModalDelete(act as any);
+  }
   React.useEffect(() => {
     if (modalDelete === false) {
       if (!currentUser) {
@@ -66,6 +70,8 @@ export const Board: FunctionComponent<BoardTypes> = ({ deleteImageUseCase, getAl
   };
 
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2];
+  console.log(images);
+  const count: number = Number(images?.length && +images?.length / 3);
   return (
     <div>
       {loading ? (
@@ -76,42 +82,55 @@ export const Board: FunctionComponent<BoardTypes> = ({ deleteImageUseCase, getAl
         <>
           <BoardContainer>
             <div>
-              {list.map((obj, index) => (
-                <Image
-                  key={index}
-                  SetActive={SetModalDelete}
-                  src={`https://source.unsplash.com/random/${obj * 2}`}
-                  description={projects.desc}
-                  userName={projects.username}
-                />
-              ))}
+              {images?.map(
+                (obj, index) =>
+                  index < count && (
+                    <Image
+                      id={obj._id}
+                      key={index}
+                      SetActive={deleteImage}
+                      src={obj.url}
+                      description={obj.label}
+                      userName={obj.label}
+                    />
+                  ),
+              )}
             </div>
             <div>
-              {list.map((obj, index) => (
-                <Image
-                  key={index}
-                  SetActive={SetModalDelete}
-                  src={`https://source.unsplash.com/random/${obj * 5}`}
-                  description={projects.desc}
-                  userName={projects.username}
-                />
-              ))}
+              {images?.map(
+                (obj, index) =>
+                  index > count &&
+                  index < count * 2 && (
+                    <Image
+                      id={obj._id}
+                      key={index}
+                      SetActive={deleteImage}
+                      src={obj.url}
+                      description={obj.label}
+                      userName={obj.label}
+                    />
+                  ),
+              )}
             </div>
             <div>
-              {list.map((obj, index) => (
-                <Image
-                  key={index}
-                  SetActive={SetModalDelete}
-                  src={`https://source.unsplash.com/random/${obj * 11}`}
-                  description={projects.desc}
-                  userName={projects.username}
-                />
-              ))}
+              {images?.map(
+                (obj, index) =>
+                  index > count * 2 && (
+                    <Image
+                      id={obj._id}
+                      key={index}
+                      SetActive={deleteImage}
+                      src={obj.url}
+                      description={obj.label}
+                      userName={obj.label}
+                    />
+                  ),
+              )}
             </div>
           </BoardContainer>
 
           <Modal active={modalDelete} SetActive={SetModalDelete}>
-            <RemoveImage deleteImageUseCase={deleteImageUseCase} SetActive={SetModalDelete} />
+            <RemoveImage deleteImageUseCase={deleteImageUseCase} id={id} SetActive={SetModalDelete} />
           </Modal>
         </>
       )}

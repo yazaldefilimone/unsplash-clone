@@ -11,9 +11,9 @@ type ImageProps = {
   className?: string;
 };
 
-export const Image: FunctionComponent<ImageProps> = ({ src, userName, className, SetActive }) => {
+export const Image: FunctionComponent<ImageProps> = ({ id, src, userName, className, SetActive }) => {
   function handlerDelete() {
-    SetActive((active: boolean) => !active);
+    SetActive(id, false);
   }
   return (
     <ImageContainer className={className}>

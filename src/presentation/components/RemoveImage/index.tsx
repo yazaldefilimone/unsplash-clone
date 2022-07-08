@@ -11,10 +11,15 @@ import { useAuth } from '@/presentation/hooks/useAuth';
 
 type RemoveImageProps = {
   SetActive: Function;
+  id: string;
   deleteImageUseCase: IDeleteImageUseCase;
 };
 
-export const RemoveImage: FunctionComponent<RemoveImageProps> = ({ SetActive, deleteImageUseCase }) => {
+export const RemoveImage: FunctionComponent<RemoveImageProps> = ({
+  SetActive,
+  id,
+  deleteImageUseCase,
+}) => {
   const [password, SetPassword] = React.useState('');
   const [toast, SetToast] = React.useState(false);
   const [loading, SetLoading] = React.useState(false);
@@ -25,9 +30,10 @@ export const RemoveImage: FunctionComponent<RemoveImageProps> = ({ SetActive, de
   }
 
   async function handlerDelete() {
+    console.log(id);
     try {
       SetLoading(true);
-      const result = await deleteImageUseCase.perform({ id: '', password });
+      const result = await deleteImageUseCase.perform({ id, password });
       console.log(result);
       SetLoading(false);
       if (result.isLeft()) {
