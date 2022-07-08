@@ -14,6 +14,7 @@ export const BoardContainer = styled.section`
 
   @media screen and (max-width: 790px) {
     gap: .5rem;
+    margin:0px .5rem ;
   }
   /* grid-template-rows: repeat(6, 300px); */
   > div {

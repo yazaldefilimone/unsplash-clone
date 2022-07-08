@@ -4,6 +4,9 @@ export const HeaderContainer = styled.header`
   margin: 0px 5rem;
   max-width: 1300px;
   margin: 0 auto;
+  @media screen and (max-width: 790px) {
+    margin:0px .8rem ;
+  }
 `;
 export const HeaderNav = styled.nav`
   display: flex;
