@@ -7,8 +7,6 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import logo from '@/shared/assets/images/logo.svg';
 import { ILoginUserUseCase } from '@/domain/usecases/user';
 import { IToastProps, Toast } from '@/presentation/components/Toast';
-import { useToast } from '@/presentation/hooks/useToast';
-import { UnexpectedError } from '@/domain/errors';
 
 type LoginProps = {
   loginUserUseCase: ILoginUserUseCase;
