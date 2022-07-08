@@ -4,6 +4,7 @@ import { HttpClient, HttpStatusCode } from '@/data/protocols/http';
 import { SetStorage } from '@/data/protocols/cache';
 import { endpoints } from '@/shared/utils';
 import { UnexpectedError } from '@/domain/errors';
+import { env } from '@/shared/env';
 
 export class LoginUserUseCase implements ILoginUserUseCase {
   private readonly httpClient: HttpClient;
@@ -26,7 +27,7 @@ export class LoginUserUseCase implements ILoginUserUseCase {
           return left(response.body);
           break;
         case HttpStatusCode.ok:
-          this.setStorage.set('accountId', { token: response.body.token });
+          this.setStorage.set(env.storage.token, { token: response.body.token });
           return right(response.body);
           break;
         case HttpStatusCode.create:
