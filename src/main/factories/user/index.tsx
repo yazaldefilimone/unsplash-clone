@@ -1,4 +1,5 @@
 import { SignupUserUseCase } from '@/data/usecases';
+import { AuthUserUseCase } from '@/data/usecases/AuthUserUseCase';
 import { LoginUserUseCase } from '@/data/usecases/LoginUserUseCase';
 import { LocalStorageAdapter } from '@/infrastructure/cache';
 import { AxiosHttpClient } from '@/infrastructure/http';
@@ -19,4 +20,9 @@ export const SignUpFactory: FunctionComponent = () => {
   const loginUserUseCase = new LoginUserUseCase(axiosHttpClient, localStorageAdapter);
 
   return <SignUp signupUserUseCase={signupUserUseCase} loginUserUseCase={loginUserUseCase} />;
+};
+
+export const authUserFactory = function () {
+  const authUserUseCase = new AuthUserUseCase(localStorageAdapter, axiosHttpClient);
+  return authUserUseCase;
 };
