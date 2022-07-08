@@ -4,6 +4,7 @@ import { GetStorage } from '@/data/protocols/cache';
 import { HttpClient, HttpStatusCode } from '@/data/protocols/http';
 import { endpoints } from '@/shared/utils';
 import { UnexpectedError } from '@/domain/errors';
+import { env } from '@/shared/env';
 
 export class AuthUserUseCase implements IAuthUserUseCase {
   private readonly getStorage: GetStorage;
@@ -14,7 +15,7 @@ export class AuthUserUseCase implements IAuthUserUseCase {
   }
   async perform(): IAuthUserUseCase.Output {
     try {
-      const cache = await this.getStorage.get('account');
+      const cache = await this.getStorage.get(env.storage.token);
       if (!cache) {
         return left(new Error('not found token'));
       }
