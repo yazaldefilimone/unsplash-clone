@@ -3,7 +3,7 @@ import { InvalidParamError, UnexpectedError } from '@/domain/errors';
 import { Either } from '@/shared/error-handler/either';
 
 export interface IGetAllImageUseCase {
-  perform: (data: IGetAllImageUseCase.Input) => IGetAllImageUseCase.Output;
+  perform: () => IGetAllImageUseCase.Output;
 }
 
 export namespace IGetAllImageUseCase {
