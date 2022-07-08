@@ -22,4 +22,22 @@ export const endpoints = {
       url: `${userUrl}/auth/`,
     },
   },
+  image: {
+    create: {
+      method: 'post',
+      url: `${imageUrl}/create/`,
+    },
+    all: {
+      method: 'get',
+      url: `${imageUrl}/all/`,
+    },
+    findImageForUser: {
+      method: 'get',
+      url: `${imageUrl}/findUser/`,
+    },
+    delete: {
+      method: 'delete',
+      url: `${imageUrl}/delete/`,
+    },
+  },
 };
