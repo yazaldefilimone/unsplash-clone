@@ -5,7 +5,7 @@ import GlobalStyles from '@/shared/styles/global';
 
 import { Home } from '@/presentation/pages/home';
 import { User } from '@/presentation/pages/user';
-import { SignUpFactory, LoginFactory } from '../factories/user';
+import { SignUpFactory, LoginFactory } from '@/main/factories/user';
 
 export const Routers: FunctionComponent = () => {
   return (
