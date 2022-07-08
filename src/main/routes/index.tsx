@@ -5,18 +5,22 @@ import GlobalStyles from '@/shared/styles/global';
 
 import { Home } from '@/presentation/pages/home';
 import { User } from '@/presentation/pages/user';
-import { SignUpFactory, LoginFactory } from '@/main/factories/user';
+import { SignUpFactory, LoginFactory, authUserFactory } from '@/main/factories/user';
+import { AuthContextProvider } from '@/presentation/hooks/useAuth';
 
 export const Routers: FunctionComponent = () => {
+  const auth = authUserFactory();
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/user" element={<User />} />
-        <Route path="/user/login" element={<LoginFactory />} />
-        <Route path="/user/signup" element={<SignUpFactory />} />
-      </Routes>
-      <GlobalStyles />
-    </BrowserRouter>
+    <AuthContextProvider authUserUseCase={auth}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/user/login" element={<LoginFactory />} />
+          <Route path="/user/signup" element={<SignUpFactory />} />
+        </Routes>
+        <GlobalStyles />
+      </BrowserRouter>
+    </AuthContextProvider>
   );
 };
