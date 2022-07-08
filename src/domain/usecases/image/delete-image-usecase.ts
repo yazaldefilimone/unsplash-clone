@@ -6,6 +6,6 @@ export interface IDeleteImageUseCase {
 }
 
 export namespace IDeleteImageUseCase {
-  export type Input = { id: string; userId: string };
+  export type Input = { id: string; password: string };
   export type Output = Promise<Either<UnexpectedError | InvalidParamError, void>>;
 }
