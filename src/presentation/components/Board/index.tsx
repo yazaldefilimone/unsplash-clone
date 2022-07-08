@@ -4,8 +4,22 @@ import { BoardContainer } from './styles';
 import { Image } from '@/presentation/components/Image';
 import { Modal } from '@/presentation/components/Modal';
 import { RemoveImage } from '@/presentation/components/RemoveImage';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/presentation/hooks/useAuth';
 export const Board: FunctionComponent = () => {
   const [modalDelete, SetModalDelete] = React.useState(true);
+  const { currentUser } = useAuth();
+  const navegante = useNavigate();
+
+  React.useEffect(() => {
+    if (modalDelete === false) {
+      if (!currentUser) {
+        navegante('/user/login');
+        return;
+      }
+    }
+  }, [modalDelete]);
+
   const desc =
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui molestias cum, nihil natus omnis sequi tenetur dolores doloribus quia quo delectus maxime soluta nobis sunt officia illum possimus numquam.';
 
@@ -20,8 +34,9 @@ export const Board: FunctionComponent = () => {
     <div>
       <BoardContainer>
         <div>
-          {list.map((obj) => (
+          {list.map((obj, index) => (
             <Image
+              key={index}
               SetActive={SetModalDelete}
               src={`https://source.unsplash.com/random/${obj * 2}`}
               description={projects.desc}
@@ -30,8 +45,9 @@ export const Board: FunctionComponent = () => {
           ))}
         </div>
         <div>
-          {list.map((obj) => (
+          {list.map((obj, index) => (
             <Image
+              key={index}
               SetActive={SetModalDelete}
               src={`https://source.unsplash.com/random/${obj * 5}`}
               description={projects.desc}
@@ -40,8 +56,9 @@ export const Board: FunctionComponent = () => {
           ))}
         </div>
         <div>
-          {list.map((obj) => (
+          {list.map((obj, index) => (
             <Image
+              key={index}
               SetActive={SetModalDelete}
               src={`https://source.unsplash.com/random/${obj * 11}`}
               description={projects.desc}
