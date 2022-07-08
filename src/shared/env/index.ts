@@ -5,4 +5,7 @@ export const env = {
   unsplash: {
     api: process.env.UNSPLASH_API,
   },
+  storage: {
+    token: 'account',
+  },
 };
