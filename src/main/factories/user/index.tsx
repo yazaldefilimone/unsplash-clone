@@ -1,6 +1,5 @@
-import { SignupUserUseCase } from '@/data/usecases';
-import { AuthUserUseCase } from '@/data/usecases/AuthUserUseCase';
-import { LoginUserUseCase } from '@/data/usecases/LoginUserUseCase';
+import { SignupUserUseCase, AuthUserUseCase, LoginUserUseCase } from '@/data/usecases/user';
+
 import { LocalStorageAdapter } from '@/infrastructure/cache';
 import { AxiosHttpClient } from '@/infrastructure/http';
 import { Login } from '@/presentation/pages/login';
