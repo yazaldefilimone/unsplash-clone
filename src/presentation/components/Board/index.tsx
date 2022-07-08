@@ -1,13 +1,27 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 
-import { BoardContainer } from './styles';
+import { BoardContainer, Loading, Spinner } from './styles';
 import { Image } from '@/presentation/components/Image';
 import { Modal } from '@/presentation/components/Modal';
 import { RemoveImage } from '@/presentation/components/RemoveImage';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/presentation/hooks/useAuth';
-export const Board: FunctionComponent = () => {
+import { IDeleteImageUseCase, IGetAllImageUseCase } from '@/domain/usecases/image';
+import { Image as Images } from '@/domain/entities';
+import { IToastProps, Toast } from '@/presentation/components/Toast';
+
+type BoardTypes = {
+  deleteImageUseCase: IDeleteImageUseCase;
+  getAllImageUseCase: IGetAllImageUseCase;
+};
+
+export const Board: FunctionComponent<BoardTypes> = ({ deleteImageUseCase, getAllImageUseCase }) => {
   const [modalDelete, SetModalDelete] = React.useState(true);
+  const [images, SetImages] = React.useState<Images[]>();
+  const [toast, SetToast] = React.useState(false);
+  const [loading, SetLoading] = React.useState(false);
+  const [errorOrSuccess, SetErrorOrSuccess] = React.useState<IToastProps>({} as IToastProps);
+
   const { currentUser } = useAuth();
   const navegante = useNavigate();
 
@@ -19,6 +33,28 @@ export const Board: FunctionComponent = () => {
       }
     }
   }, [modalDelete]);
+
+  async function handlerImage() {
+    SetLoading(true);
+    const images = await getAllImageUseCase.perform();
+    SetLoading(false);
+
+    if (images.isLeft()) {
+      SetErrorOrSuccess({
+        status: 'Error',
+        message: images.value.message,
+      });
+    }
+
+    console.log(images);
+    if (images.isRight()) {
+      SetImages(images.value);
+    }
+  }
+
+  React.useEffect(() => {
+    handlerImage().then((a) => a);
+  }, []);
 
   const desc =
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui molestias cum, nihil natus omnis sequi tenetur dolores doloribus quia quo delectus maxime soluta nobis sunt officia illum possimus numquam.';
@@ -32,45 +68,54 @@ export const Board: FunctionComponent = () => {
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2];
   return (
     <div>
-      <BoardContainer>
-        <div>
-          {list.map((obj, index) => (
-            <Image
-              key={index}
-              SetActive={SetModalDelete}
-              src={`https://source.unsplash.com/random/${obj * 2}`}
-              description={projects.desc}
-              userName={projects.username}
-            />
-          ))}
-        </div>
-        <div>
-          {list.map((obj, index) => (
-            <Image
-              key={index}
-              SetActive={SetModalDelete}
-              src={`https://source.unsplash.com/random/${obj * 5}`}
-              description={projects.desc}
-              userName={projects.username}
-            />
-          ))}
-        </div>
-        <div>
-          {list.map((obj, index) => (
-            <Image
-              key={index}
-              SetActive={SetModalDelete}
-              src={`https://source.unsplash.com/random/${obj * 11}`}
-              description={projects.desc}
-              userName={projects.username}
-            />
-          ))}
-        </div>
-      </BoardContainer>
+      {loading ? (
+        <Loading>
+          <Spinner></Spinner>
+        </Loading>
+      ) : (
+        <>
+          <BoardContainer>
+            <div>
+              {list.map((obj, index) => (
+                <Image
+                  key={index}
+                  SetActive={SetModalDelete}
+                  src={`https://source.unsplash.com/random/${obj * 2}`}
+                  description={projects.desc}
+                  userName={projects.username}
+                />
+              ))}
+            </div>
+            <div>
+              {list.map((obj, index) => (
+                <Image
+                  key={index}
+                  SetActive={SetModalDelete}
+                  src={`https://source.unsplash.com/random/${obj * 5}`}
+                  description={projects.desc}
+                  userName={projects.username}
+                />
+              ))}
+            </div>
+            <div>
+              {list.map((obj, index) => (
+                <Image
+                  key={index}
+                  SetActive={SetModalDelete}
+                  src={`https://source.unsplash.com/random/${obj * 11}`}
+                  description={projects.desc}
+                  userName={projects.username}
+                />
+              ))}
+            </div>
+          </BoardContainer>
 
-      <Modal active={modalDelete} SetActive={SetModalDelete}>
-        <RemoveImage SetActive={SetModalDelete} />
-      </Modal>
+          <Modal active={modalDelete} SetActive={SetModalDelete}>
+            <RemoveImage deleteImageUseCase={deleteImageUseCase} SetActive={SetModalDelete} />
+          </Modal>
+        </>
+      )}
+      <Toast value={toast} SetValue={SetToast} {...errorOrSuccess} />
     </div>
   );
 };
