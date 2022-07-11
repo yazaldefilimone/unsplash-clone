@@ -1,5 +1,5 @@
 import { left, right } from '@/shared/error-handler/either';
-import { endpoints } from '@/shared/utils';
+import { endpoints, urlValid } from '@/shared/utils';
 import { HttpClient, HttpStatusCode } from '@/data/protocols/http';
 import { UnexpectedError } from '@/domain/errors';
 import { ICreateImageUseCase } from '@/domain/usecases/image';
@@ -12,8 +12,8 @@ export class CreateImageUseCase implements ICreateImageUseCase {
 
   async perform(data: ICreateImageUseCase.Input): ICreateImageUseCase.Output {
     try {
-      const result = await fetch(data.url);
-      if (!result.ok) {
+      const result = urlValid(data.url);
+      if (!result) {
         return left(new Error('Invalid Image path'));
       }
       const request = {

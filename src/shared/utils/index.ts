@@ -47,3 +47,12 @@ export const endpoints = {
     },
   },
 };
+
+export const urlValid = (url: string) => {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
