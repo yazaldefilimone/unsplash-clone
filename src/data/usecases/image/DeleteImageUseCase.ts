@@ -14,7 +14,7 @@ export class DeleteImageUseCase implements IDeleteImageUseCase {
     try {
       const request = {
         ...endpoints.image.delete,
-        param: data.id,
+        body: data,
       };
       const response = await this.httpClient.request(request);
 
