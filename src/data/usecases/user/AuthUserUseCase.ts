@@ -33,6 +33,9 @@ export class AuthUserUseCase implements IAuthUserUseCase {
         case HttpStatusCode.ok:
           return right(response.body);
           break;
+        case HttpStatusCode.unauthorized:
+          return right(response.body);
+          break;
         default:
           return left(new UnexpectedError());
           break;
