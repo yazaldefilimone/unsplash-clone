@@ -12,6 +12,10 @@ export class CreateImageUseCase implements ICreateImageUseCase {
 
   async perform(data: ICreateImageUseCase.Input): ICreateImageUseCase.Output {
     try {
+      const result = await fetch(data.url);
+      if (!result.ok) {
+        return left(new Error('Invalid Image path'));
+      }
       const request = {
         ...endpoints.image.create,
         body: data,
